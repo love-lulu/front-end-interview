@@ -1,0 +1,15 @@
+<script>
+  function superType(name) {
+    this.name = name;
+    this.colors = ["red", "blue"];
+  }
+  superType.prototype.sayName = function() {
+    console.log(this.name);
+  };
+
+  function subType(name, age) {
+    superType.call(this, name);
+  }
+
+  console.log(new subType('cc'))
+</script>

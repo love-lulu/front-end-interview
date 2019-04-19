@@ -1,0 +1,16 @@
+<script>
+  Promise.prototype.all = function(list) {
+    return new Promise((resolve, reject) => {
+      let resultList = [];
+      let count = 0;
+      list.forEach((element, index) => {
+        element.then(res => {
+          resultList[index] = res;
+          if (++count === list.length) {
+            resolve(resultList);
+          }
+        });
+      });
+    });
+  };
+</script>

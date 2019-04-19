@@ -1,0 +1,8 @@
+<script>
+  function format(num) {
+    var reg = /\d{1,3}(?=(\d{3})+$)/g;
+    return (num + "").replace(reg, "$&,");
+  }
+  // ?= 捕获
+  console.log(format(1312567903));
+</script>
