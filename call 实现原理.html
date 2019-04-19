@@ -1,0 +1,23 @@
+<script type="text/javascript">
+  Function.prototype.cutomCall = function(context) {
+    // context 参数上下文对象 以及函数方法
+    context.fn = this;
+    const args = [...arguments].slice(1);
+    const result = context.fn(...args);
+    delete context.fn;
+    return result;
+  };
+
+  function parent(age) {
+    this.age = age;
+    this.name = function() {
+      console.log(this.age);
+    };
+  }
+
+  function son() {
+    parent.cutomCall(this, 40);
+  }
+
+  console.log(new son().name());
+</script>

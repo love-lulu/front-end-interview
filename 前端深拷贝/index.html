@@ -3,7 +3,6 @@ checkType = (target) => Object.prototype.toString.call(target)
 
 function clone(target) {
     let result
-    console.log(checkType(target))
     if (checkType(target) === "[object Object]") {
         result = {}
     } else if (checkType(target) === "[object Array]") {
@@ -26,6 +25,4 @@ const obj = {
     age: 23,
 }
 clone(obj).age = 40;
-console.log(obj)
-
 </script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    BFC 的原理
+    其实也就是 BFC 的渲染规则（能说出以下四点就够了）。包括：
+    BFC 内部的子元素，在垂直方向，边距会发生重叠。
+    BFC在页面中是独立的容器，外面的元素不会影响里面的元素，反之亦然。
+    BFC区域不与旁边的float box区域重叠。（可以用来清除浮动带来的影响）。
+    计算BFC的高度时，浮动的子元素也参与计算。
+    如何生成BFC
+    方法1：overflow: 不为visible，可以让属性是 hidden、auto。【最常用】
+    方法2：浮动中：float的属性值不为none。意思是，只要设置了浮动，当前元素就创建了BFC。
+    方法3：定位中：只要posiiton的值不是 static或者是relative即可，可以是absolute或fixed，也就生成了一个BFC。
+    方法4：display为inline-block, table-cell, table-caption, flex, inline-flex
+    BFC应用
+    阻止margin重叠
+    可以包含浮动元素 —— 清除内部浮动(清除浮动的原理是两个div都位于同一个 BFC 区域之中)
+    自适应两栏布局
+    可以阻止元素被浮动元素覆盖
+</body>
+
+</html>
