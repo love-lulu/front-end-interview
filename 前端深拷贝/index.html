@@ -1,0 +1,31 @@
+<script type="text/javascript">
+checkType = (target) => Object.prototype.toString.call(target)
+
+function clone(target) {
+    let result
+    console.log(checkType(target))
+    if (checkType(target) === "[object Object]") {
+        result = {}
+    } else if (checkType(target) === "[object Array]") {
+        result = []
+    } else {
+        return target
+    }
+    for (let key in target) {
+        if (checkType(target[key]) === "[object Object]" || checkType(target[key]) === "[object Array]") {
+            result[key] = clone(target[key])
+        } else {
+            result[key] = target[key]
+        }
+    }
+    return result
+}
+
+const obj = {
+    name: 'cc',
+    age: 23,
+}
+clone(obj).age = 40;
+console.log(obj)
+
+</script>
