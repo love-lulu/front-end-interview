@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+  li {
+    width: 200px;
+    height: 500px;
+    background: red;
+  }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+  </ul>
+</body>
+
+</html>
+<script type="text/javascript">
+/**
+ * 节流函数
+ * @param method 事件触发的操作
+ * @param mustRunDelay 间隔多少毫秒需要触发一次事件
+ */
+function throttle(method, mustRunDelay) {
+  let timer,
+    args = arguments,
+    start;
+  return function loop() {
+    let self = this;
+    let now = Date.now();
+    if (!start) {
+      start = now;
+    }
+    if (timer) {
+      clearTimeout(timer);
+    }
+    if (now - start >= mustRunDelay) {
+      method.apply(self, args);
+      start = now;
+    } else {
+      timer = setTimeout(function() {
+        loop.apply(self, args);
+      }, 50);
+    }
+  }
+}
+window.onscroll = throttle(function() {
+  let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+  console.log('滚动条位置：' + scrollTop);
+}, 800)
+</script>
