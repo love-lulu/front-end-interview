@@ -1,0 +1,14 @@
+<script type="text/javascript">
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseWords = function(s) {
+  var newArr = s.split(' ')
+  for (let i = 0; i < newArr.length; i++) {
+    newArr[i] = newArr[i].split('').reverse().join('')
+  }
+
+  return newArr.join(' ')
+};
+</script>

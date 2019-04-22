@@ -1,0 +1,13 @@
+<script type="text/javascript">
+/*输入: -121
+输出: false
+解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。*/
+
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function(x) {
+  return x.toString() === x.toString().split('').reverse().join('')
+};
+</script>
