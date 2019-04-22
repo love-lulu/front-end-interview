@@ -1,0 +1,15 @@
+<script type="text/javascript">
+var url = "https://www.easy-mock.com/mock/5bad8210a1b7f6239a61664f/pcTest";
+var xhr = new XMLHttpRequest()
+xhr.open('get', url)
+xhr.send();//发送请求
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4 && xhr.status == 200) {
+    var reponse = xhr.responseText;
+    //JSON.parse()将字符串转为json对象
+    var name = JSON.parse(reponse).data.name;
+    console.log(name)
+  }
+}
+
+</script>

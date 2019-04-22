@@ -1,0 +1,14 @@
+<script type="text/javascript">
+console.log([1, 2, 3].includes(2)) // true
+// 该方法的第二个参数表示搜索的起始位置，默认为0。
+console.log([1, 2, 3].includes(3, 3)) // false
+
+// indexOf方法有两个缺点，一是不够语义化，它的含义是找到参数值的第一个出现位置，所以要去比较是否不等于-1，表达起来不够直观。二是，它内部使用严格相等运算符（===）进行判断，这会导致对NaN的误判。
+
+// NaN == NaN返回false
+//一般情况下一个数或者字符串和自身比较时应该返回true，但NaN和自身比较返回false，这是因为NaN表示一个无法表示的值，而这个无法表示的值可以有很多种，具体见上文。比如0/0返回NaN，0/’fail’也返回NaN，而0/0 != 0/’fail’，所以NaN == NaN返回false。
+
+
+// isNaN
+// isNaN() 函数用来判断一个值是否为 NaN。但是isNaN函数在判断之前会先通过ToNumber()函数强制转换，然后对强制转换后的值进行isNaN()判断。
+</script>

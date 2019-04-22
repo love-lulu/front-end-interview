@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  为什么用transform居中而不是marginLeft/Top
+  浏览器渲染过程
+  解析DOM Tree，创建一个或多个渲染层（layer） 将每个层独立的绘进位图中（计算样式->布局->栅格化） 将层作为纹理（texture）上传至GPU 复合（composite）多个层来生成最终的屏幕图像 每个层的样式出现调整后，要重新计算样式->重新布局->重新栅格化->重新组合
+  使用top/left只会创建一个层，而是用transform会使浏览器将元素单独提取放在GPU单独的渲染层中，这样有三点好处： 1. 该元素任何合成属性（Composite Property）的变化将不会影响原有文档，不会导致文档被重新布局（重绘、回流） 2. 该层将由GPU负责渲染，从而节省CPU资源，不会阻塞主线程JS代码的执行 3. 动画更为平顺，这是因为使用transform可以小于像素的单位进行绘制 可能带来的负作用是额外的渲染层导致更多的线程间通信，如果过度使用，导致生成成百上千的渲染层，那反而会导致组合各层图像的成本迅速上升成为主要矛盾，且我们需要记住GPU也是有内存限制的
+  /**使用3d效果来开启硬件加速**/
+  .speed-up {
+	  -webkit-transform: translate3d(250px,250px,250px)
+	  rotate3d(250px,250px,250px,-120deg)
+	  scale3d(0.5, 0.5, 0.5);
+  }
+</body>
+
+</html>

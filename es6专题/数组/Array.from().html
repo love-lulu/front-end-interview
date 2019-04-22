@@ -1,0 +1,26 @@
+<script type="text/javascript">
+//	只要是部署了 Iterator 接口的数据结构，Array.from都能将其转为数组。
+// 字符串、类数组、set
+
+let arrayLike = {
+  '0': 'a',
+  '1': 'b',
+  '2': 'c',
+  length: 3
+};
+let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+console.log('arr2', arr2)
+
+function test(age, name) {
+  console.log('arguments', arguments)
+  console.log('数组', [].slice.call(arguments))
+  console.log(Array.from(arguments))
+  this.age = age
+  this.name = name
+}
+test(30, 'cc')
+
+Array.from('helloworld', (x) => {
+  // console.log(x)
+})
+</script>
