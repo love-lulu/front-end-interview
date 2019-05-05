@@ -1,20 +1,24 @@
 <script>
-Function.prototype.customApply = function(context) {
+Function.prototype.customApply = function(context, arr) {
+  var context = context || window; //因为传进来的context有可能是null
   context.fn = this;
-  let result = [];
-  if (arguments[1]) {
-      result = context.fn(...arguments[1]);
-  } else {
-      result = context.fn();
+  var args = [];
+  var params = arr || [];
+  for (var i = 0; i < params.length; i++) {
+    args.push("params[" + i + "]"); //不这么做的话 字符串的引号会被自动去掉 变成了变量 导致报错
   }
+  args = args.join(",");
+
+  var result = eval("context.fn(" + args + ")"); //相当于执行了context.fn(arguments[1], arguments[2]);
+
   delete context.fn;
-  return result;
+  return result; //因为有可能this函数会有返回值return
 };
 
 function parent(age) {
   this.age = age;
   this.name = function() {
-      console.log(this.age);
+    console.log(this.age);
   };
 }
 

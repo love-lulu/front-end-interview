@@ -1,17 +1,26 @@
 <script>
-Function.prototype.myBind = function(context) {
+Function.prototype.bind = function() {
   if (typeof this !== 'function') {
-    throw new TypeError('Error')
+    throw new TypeError(`${this} is not callable`);
   }
-  var _this = this
-  var args = [...arguments].slice(1)
-  // 返回一个函数
-  return function F() {
-    // 因为返回了一个函数，我们可以 new F()，所以需要判断
-    if (this instanceof F) {
-      return new _this(...args, ...arguments)
-    }
-    return _this.apply(context, args.concat(...arguments))
-  }
+  var _this = this;
+  var argsParent = Array.prototype.slice.call(arguments, 1);
+  return function() {
+    var args = argsParent.concat(Array.prototype.slice.call(arguments)); //转化成数组
+    _this.apply(context, args);
+  };
+};
+
+function people(age, name, color) {
+  this.age = age
+  this.name = name
+  this.color = color
 }
+
+function son() {
+  people.bind(this, 1, 2)(3);
+}
+
+console.log(new son())
+// [ 1, 2, 3 ]
 </script>

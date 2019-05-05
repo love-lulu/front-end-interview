@@ -1,0 +1,15 @@
+<script type="text/javascript">
+function sleep(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+// 用法
+sleep(5000).then(() => {})
+
+
+(async function() {
+  console.log('Do some thing, ' + new Date());
+  await sleep(3000);
+  console.log('Do other things, ' + new Date());
+})();
+</script>

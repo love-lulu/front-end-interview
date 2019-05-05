@@ -1,0 +1,18 @@
+<input type="text" id="foo">
+<p id="test"></p>
+<script>
+var user = {}
+Object.defineProperty(user, 'inputValue', {
+  configurable: true,
+  get: function() {
+    return document.getElementById('foo').value
+  },
+  set: function(value) {
+    document.getElementById('foo').value = value
+    document.getElementById('test').innerHTML = value
+  }
+})
+document.getElementById('foo').addEventListener('keyup', function() {
+  document.getElementById('test').innerHTML = user.inputValue
+})
+</script>

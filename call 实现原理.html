@@ -1,23 +1,30 @@
 <script type="text/javascript">
-  Function.prototype.cutomCall = function(context) {
-    // context 参数上下文对象 以及函数方法
-    context.fn = this;
-    const args = [...arguments].slice(1);
-    const result = context.fn(...args);
-    delete context.fn;
-    return result;
+Function.prototype.cutomCall = function(context) {
+  // context 参数上下文对象 以及函数方法
+  context.fn = this;
+  var args = []
+  for (var i = 1; i < arguments.length; i++) {
+    args.push("arguments[" + i + "]"); //不这么做的话 字符串的引号会被自动去掉 变成了变量 导致报错
+  }
+  args = args.join(",");
+  const result = eval("context.fn(" + args + ")")
+  delete context.fn;
+  return result;
+};
+
+
+function parent(age, name) {
+  this.age = age;
+  this.name = name;
+  this.name = function() {
+    console.log(this.age);
   };
+}
 
-  function parent(age) {
-    this.age = age;
-    this.name = function() {
-      console.log(this.age);
-    };
-  }
+function son() {
+  parent.cutomCall(this, 40, 'Lucy');
+}
 
-  function son() {
-    parent.cutomCall(this, 40);
-  }
 
-  console.log(new son().name());
+console.log('___', typeof new son().age);
 </script>

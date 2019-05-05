@@ -1,0 +1,46 @@
+<script type="text/javascript">
+var tree = {
+  value: "-",
+  left: {
+    value: '+',
+    left: {
+      value: 'a',
+    },
+    right: {
+      value: '*',
+      left: {
+        value: 'b',
+      },
+      right: {
+        value: 'c',
+      }
+    }
+  },
+  right: {
+    value: '/',
+    left: {
+      value: 'd',
+    },
+    right: {
+      value: 'e',
+    }
+  }
+}
+
+function bfs(node) {
+  let result = [];
+  let queue = [];
+  queue.push(node);
+  while (queue.length) {
+    node = queue.shift();
+    result.push(node.value); // 不要忘记访问
+    node.left && queue.push(node.left);
+    node.right && queue.push(node.right);
+  }
+  return result;
+}
+var bfsTree = bfs(tree);
+console.log('bfsTree', bfsTree)
+//  ["-", "+", "/", "a", "*", "d", "e", "b", "c"]
+// ["-", "+", "/", "a", "*", "b", "c"]
+</script>

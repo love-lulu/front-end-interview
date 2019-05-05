@@ -1,0 +1,10 @@
+React组件的生命周期
+React父子组件如何通信的
+React层级很深的组件如何通信传值(Context API)
+React做了哪些性能优化 PureComponent的实现原理是什么
+React setState后都会发生什么，是否了解
+React 1000个列表节点渲染，给出一个优化方案
+是否了解React事件机制，如果让你实现如何来设计
+Redux的原理及理解
+react-redux是如何来实现的，connect是不是一个高阶函数，原理是什么
+react与vue相比，有什么不同

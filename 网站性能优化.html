@@ -1,0 +1,15 @@
+DNS预热
+一次DNS解析耗时20-120ms, 当网页中使用的域名较多时，DNS预热节省的时间还是非常可观的
+
+预热的目的：
+减少请求次数、提前对DNS预获取
+预热的方式
+爬虫、APP、网页meta
+
+<meta http-equiv="x-dns-prefetch-control" content="on" />
+<link rel="dns-prefetch" href="//webresource.english.c-ctrip.com" />
+<link rel="dns-prefetch" href="//webresource.c-ctrip.com" />
+<link rel="dns-prefetch" href="//s.c-ctrip.com" />
+<link rel="dns-prefetch" href="//pic.english.c-ctrip.com" />
+<link rel="dns-prefetch" href="//m.ctrip.com" />
+<!-- 另外，对于国际化站点尤其需要这么做，举个例子，在美国访问中国的网站，DNS解析会回源到中国，耗时通常在400ms至800ms，甚至更长，如果提前预热，那么可以节省这些时间。 -->

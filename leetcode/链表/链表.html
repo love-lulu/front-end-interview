@@ -1,3 +1,43 @@
 <script type="text/javascript">
-	
+//结点
+function Node(data) {
+  this.data = data;
+  this.next = null;
+}
+//单链表
+function LinkList() {
+  this.head = new Node('head'); //头结点
+  //向链表尾结点之后加入结点
+  this.append = function(ele) {
+    var newNode = new Node(ele),
+      lastNode = this.head;
+    while (lastNode.next != null)
+      lastNode = lastNode.next;
+    lastNode.next = newNode;
+  }
+}
+var data = [1]
+var llist = new LinkList();
+data.forEach(function(item) {
+  llist.append(item);
+});
+// console.log('llist', llist.head)
+//主函数
+function reverseList(nodeLst) {
+  var pNode = nodeLst;
+  var pPre = null; //翻转之后 第一个节点的next值 为 null   
+  var pNext;
+
+  while (pNode) {
+    pNext = pNode.next; //获取到当前节点的下一个节点    
+    pNode.next = pPre; //当前节点的前一个指向上一个节点
+    pPre = pNode; //上一个节点赋值为当前节点
+    pNode = pNext; //当前节点赋值为下一个节点
+  }
+  return pPre;
+}
+
+head --> 2
+// reverseList(llist.head)
+console.log('--------',reverseList(llist.head))
 </script>

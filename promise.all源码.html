@@ -6,7 +6,7 @@
       list.forEach((element, index) => {
         element.then(res => {
           resultList[index] = res;
-          if (++count === list.length) {
+          if (resultList.length === list.length) {
             resolve(resultList);
           }
         });
